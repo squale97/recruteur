@@ -1,0 +1,66 @@
+<div class="grid">
+
+    <div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h4>Modifier l'offre</h4>
+            <div class="card p-fluid">
+                <h5>Détails de l'offre</h5>
+                <div class="field">
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <label htmlFor="name2">Nom</label>
+                            <input [(ngModel)]="nom"  pInputText id="name2" type="text" />
+                        </div>
+                      
+                        <div class="field col">
+                            <label htmlFor="name2">Lieu</label>
+                            <input [(ngModel)]="lieu"  pInputText id="name2" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="p-formgrid grid">
+                      
+                        <div class="field col">
+                            <label htmlFor="email2">Structure</label>
+                            <input [(ngModel)]="structure"  pInputText id="email2" type="text" />
+                        </div>
+                        <div class="field col">
+                        <label htmlFor="name1">Années d'expérience réquis</label>
+                        <input [(ngModel)]="anneeExp" pInputText id="name1" type="number" />
+                    </div>
+                    </div>
+
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <label htmlFor="name2">Type</label>
+                            <p-dropdown [options]="dropdownItems"  [(ngModel)]="selectedType"></p-dropdown>
+                        </div>
+                        <div class="field col">
+                            <label htmlFor="email2">Date de Fin</label>
+                            <input [(ngModel)]="date"  pInputText id="email2" type="date" />
+                        </div>
+                        <div class="field col">
+                            <label htmlFor="email2">Validité</label>
+                            <p-dropdown [options]="validite"  [(ngModel)]="validiteTest"></p-dropdown>
+                        </div>
+                    
+                    </div>
+                  
+                    <div class="field col">
+                        <label htmlFor="email2">Description</label>
+                        <textarea [(ngModel)]="description"  rows="4" cols="12" pInputText id="email2" type="text"></textarea> 
+                    </div>
+                    <div class="field col">
+                    <button (click)="updateEmploi()"  pButton pRipple label="Valider" ></button>
+                </div>
+                </div>
+               
+             
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+	

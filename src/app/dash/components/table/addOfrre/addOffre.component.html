@@ -1,0 +1,79 @@
+<script>
+   
+</script>
+
+
+<div class="grid">
+
+    <div class="grid">
+    <div class="col-10">
+        <div class="card">
+            <h4>Ajouter une offre</h4>
+            <div class="card p-fluid">
+                <h5>Détails de l'offre</h5>
+                <form action=""></form>
+                <div class="field">
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <label htmlFor="name2">Nom</label>
+                            <input (input)="verifierFormulaire()"  pInputText id="name2" [(ngModel)]="nom" type="text" />
+                        </div>
+                      
+                        <div class="field col">
+                            <label htmlFor="name2">Lieu</label>
+                            <input (input)="verifierFormulaire()"  pInputText id="name2" [(ngModel)]="lieu" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="p-formgrid grid">
+                      
+                        <div class="field col">
+                            <label htmlFor="email2">Structure</label>
+                            <input (input)="verifierFormulaire()"  pInputText id="email2" [(ngModel)]="structure" type="text" />
+                        </div>
+                        <div class="field col">
+                        <label htmlFor="name1">Années d'expérience réquis</label>
+                        <input (input)="verifierFormulaire()"  pInputText id="name1" [(ngModel)]="nbreAnnee" type="number" />
+                    </div>
+                    </div>
+
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <label htmlFor="name2">Type</label>
+                            <p-dropdown (input)="verifierFormulaire()"  [options]="dropdownItems"  [(ngModel)]="selectedType"></p-dropdown>
+                        </div>
+                        <div class="field col">
+                            <label htmlFor="email2">Date de Fin</label>
+                            <input (input)="verifierFormulaire()"  pInputText id="email2" [(ngModel)]="dateFin" type="date" />
+                        </div>
+                        <!--<div class="field col">
+                            <label htmlFor="email2">Validité</label>
+                            <p-dropdown [options]="dropdownItems"  [(ngModel)]="selectedType"></p-dropdown>
+                        </div>-->
+                    
+                    </div>
+                  
+                    <div class="field col">
+                        <label htmlFor="email2">Description</label>
+                        <textarea (input)="verifierFormulaire()"  [(ngModel)]="description" rows="4" cols="12" pInputText id="email2" type="text"></textarea> 
+                    </div>
+                    <div class="p-formgrid grid">
+                    <div class="field col">
+                        <p-toast></p-toast>
+                    <button [disabled]="!formulaireComplet" id="valid" (click)="addOffre()"  pButton pRipple label="Valider" ></button>
+                  
+                </div>
+                <div class="field col">
+                    <button  routerLink="/table/tvm"  style="background-color: rgb(233, 99, 99);"  pButton pRipple label="Quitter" ></button>
+                  
+                </div>
+                </div>
+                </div>
+               
+             
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

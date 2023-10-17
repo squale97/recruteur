@@ -1,0 +1,112 @@
+<div class="grid">
+
+   
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <h4>Details de la candidature</h4>
+            <div class="card p-fluid">
+                <h5>Candidat</h5>
+                <div class="field">
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <label htmlFor="name2">Nom</label>
+                            <p   pInputText id="name2" type="text" > {{nom}} </p>
+                        </div>
+
+                        <div class="field col">
+                            <label htmlFor="name2">Prénom</label>
+                            <p   pInputText id="name2" type="text" > {{prenom}} </p>
+                        </div>
+                      
+                        <div class="field col">
+                            <label htmlFor="name2">Email</label>
+                            <p   pInputText id="name2" type="text" > {{email}} </p>
+                        </div>
+                    </div>
+
+                    <div class="p-formgrid grid">
+                      
+                        <div class="field col">
+                            <label htmlFor="email2">Titre</label>
+                            <p   pInputText id="name2" type="text" > {{titre}} </p>
+                        </div>
+                        <div class="field col">
+                        <label htmlFor="name1">Nombre années d'expérience</label>
+                        <p   pInputText id="name2" type="text" > {{anneeExp}} </p>
+                    </div>
+                    </div>
+
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <label htmlFor="name2">Statut de candidature</label>
+                            <p-dropdown [options]="dropdownItems"  [(ngModel)]="selectedType"></p-dropdown>
+                        </div>
+                        <div class="field col">
+                            <label htmlFor="email2">Date de Fin</label>
+                            <input pInputText id="email2" type="date" />
+                        </div>
+                        <!--<div class="field col">
+                            <label htmlFor="email2">Validité</label>
+                            <p-dropdown [options]="dropdownItems"  [(ngModel)]="selectedType"></p-dropdown>
+                        </div>-->
+                    
+                    </div>
+                  
+                
+                    <div class="field col">
+                    <button (click)="validCandidat()"  pButton pRipple label="Valider" ></button>
+                </div>
+                </div>
+               
+             
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div class="col-12 md:col-6">
+    <div class="card p-fluid">
+        <h5>Description du profile</h5>
+        <div class="field grid">
+         
+            <div class="col-12 md:col-10">
+                <p>
+                    {{description}}
+
+                  
+                </p>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="card">
+        <h5>Lettre de Motivation</h5>
+        <div class="formgroup-inline">
+         
+           
+            <p-button (click)="showDialog()" icon="pi pi-external-link" label="voir"></p-button>
+            <p-dialog header="Lettre de motivation" [(visible)]="visible" [style]="{ width: '50vw', height: '300px' }">
+                 {{motivation}}
+               </p-dialog>
+                
+        </div>
+    </div>
+
+    <div class="card">
+        <h5>Curriculum Vitae</h5>
+        <div class="formgroup-inline">
+           
+           
+            <p-button  (click)="getUserCvOnly()" icon="pi pi-external-link" label="Voir"></p-button>
+            <p-button style="margin-left: 10px;" (click)="getUserCv()" icon="pi pi-external-link" label="imprimer"></p-button>
+        </div>
+    </div>
+
+   
+</div>
+</div>
+
+	

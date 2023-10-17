@@ -1,0 +1,101 @@
+
+
+    <div class="grid">
+   
+        <!--<style>
+         #ops:hover{
+         cursor: pointer;
+         background-color: peru;
+         }
+        </style>-->
+         
+             <div id="ops"   *ngFor="let op of operateurs" class="col-12 lg:col-6 xl:col-4">
+             <div class="card mb-0">
+                 <div class="flex justify-content-between mb-3">
+                     <div>
+                         <span class="block text-500 font-medium mb-3">{{op.op}}</span>
+                         <div class="text-900 font-medium text-xl"> {{op.nbre}}</div>
+                         <br>
+                         <div class="text-900 font-medium text-xl"> {{op.somme}} FCFA</div>
+                     </div>
+                     <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                         <i class="pi pi-file text-yellow-500 text-xl"></i>
+                     </div>
+                 </div>
+               
+             </div>
+         </div>
+     
+
+
+    <div class="col-12">
+        <div class="card">
+            <h4>Paiement Taxe de Résidence</h4>
+            <div class="row">
+                <label for="drop">Par opérateur</label> <p></p>
+                 <p-dropdown id="drop" [options]="operateurs"(onChange)="changeOp()" [(ngModel)]="selectedOperateur" optionLabel="op"></p-dropdown>
+                
+                 <label style="margin-left: 10px;" for="per">Intervalle de date</label>
+                 
+                     <input id="per"style="margin-left: 10px;" [(ngModel)]="d1" placeholder="debut" type="date">
+                     <input [(ngModel)] = "d2" style="margin-left: 50px;" placeholder="fin" type="date">
+                 
+                <!--<input style="margin-left: 100px;" [(ngModel)]="selectedTime" placeholder="interval(en jours)" type="text">-->
+                 <p-button (click)="trTab()"style="padding-left: 10px;">OK</p-button>
+             </div>
+            <div class="card">
+                <h5>TR</h5>
+                <p-table [value]="trs" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Date</th>
+                         
+                            <th>Montant</th>
+                            <th>Numéro </th>
+                            <th pSortableColumn="operateur">Opérateur<p-sortIcon field="montant"></p-sortIcon></th>
+                            <th>IP</th>
+                            <th>Quittance</th>
+                            <th>Type</th>
+                            <th>Transaction</th>
+                            <th>Indentifiant</th>
+                            <th>Code Transaction</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-tr>
+                        <tr>
+                            <td style="width: 35%; min-width: 5rem;">
+                                {{tr.dateConsultation}}
+                            </td>
+                          
+                            <td style="width: 15%; min-width: 5rem;">{{tr.montant}}</td>
+                            <td style="width: 15%; min-width: 5rem;">{{tr.msisdn}}</td>
+                            <td style="width: 15%;">
+                               {{tr.operateur}}
+                            </td>
+                            <td style="width: 15%; min-width: 5rem;">
+                                {{tr.ip}}
+                            </td>
+                            <td style="width: 15%; min-width: 5rem;">
+                                {{tr.numQuittance}}
+                            </td>
+                            <td style="width: 15%; min-width: 5rem;">
+                                {{tr.type}}
+                            </td>
+                            <td style="width: 15%; min-width: 5rem;">
+                                {{tr.idTransaction}}
+                            </td>
+                            <td style="width: 15%; min-width: 5rem;">
+                                {{tr.idtr_h}}
+                            </td>
+                            <td style="width: 15%; min-width: 5rem;">
+                                {{tr.codeTr}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                   
+                </p-table>
+                
+            </div>
+        </div>
+    </div>
+</div>

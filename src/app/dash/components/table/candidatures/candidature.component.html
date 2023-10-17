@@ -1,0 +1,110 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<h5>Candidatures</h5>
+			
+<p-table
+#dt1
+[value]="candidatures"
+dataKey="id"
+[rows]="10"
+[showCurrentPageReport]="true"
+[rowsPerPageOptions]="[10, 25, 50]"
+
+[paginator]="true"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[globalFilterFields]="['Candidat', 'emailCandidat', 'statut']"
+>
+<ng-template pTemplate="caption">
+    <div class="flex">
+        <button pButton label="Effacer" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+      
+       
+ 
+ 
+        <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="chercher" />
+        </span>
+       <!-- <button [routerLink]="['/table/addOffre']" style="margin-left: 10px;" pButton label="Ajouter une offre" icon="pi pi-add" ></button>-->
+       </div>
+  
+</ng-template>
+<ng-template pTemplate="header">
+    <tr>
+        <th  pSortableColumn="nom">
+            <div class="flex align-items-center">
+                Nom
+                <p-sortIcon field="nom"></p-sortIcon>
+            </div>
+        </th>
+        <th  pSortableColumn="lieu" style="min-width:15rem">
+            <div class="flex align-items-center">
+                Email
+                <p-sortIcon field="lieu"></p-sortIcon>
+            </div>
+        </th>
+        <th  pSortableColumn="structure" style="min-width:15rem">
+            <div class="flex align-items-center">
+                Statut
+                <p-sortIcon field="structure"></p-sortIcon>
+                   
+            </div>
+        </th>
+       
+        
+      
+       
+        <th style="width: 3rem">
+            <div class="flex align-items-center">
+                Voir les candidatures
+             
+            </div>
+        </th>
+     
+        <th style="width: 3rem">
+            <div class="flex align-items-center">
+                Supprimer
+             
+            </div>
+        </th>
+      
+    </tr>
+</ng-template>
+<ng-template pTemplate="body" let-candidat>
+    <tr>
+        <td>
+            {{candidat.Candidat}}
+        </td>
+        <td>
+            <!--<img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />-->
+            <span class="ml-1 vertical-align-middle">{{candidat.emailCandidat}}</span>
+        </td>
+        <td>
+           <!-- <img [alt]="customer.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" width="32" style="vertical-align: middle" />-->
+            <span class="ml-1 vertical-align-middle">{{candidat.statut}}</span>
+            <td>
+                <a [routerLink]="['/table/candidature-details']" [queryParams]="{candidat: candidat.idCandidat, candidature:candidat.id, statut:candidat.statut}" > <i 
+                    style="color:blue; " class="pi pi-eye"></i>  </a>
+            </td>
+      
+        <td>
+            <a href=""> <i 
+                style="color: red; " class="pi pi-trash"></i>  </a>
+        </td>
+
+        
+        
+     
+      
+    </tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+    <tr>
+        <td colspan="7">No customers found.</td>
+    </tr>
+</ng-template>
+</p-table>
+		</div>
+	</div>
+</div>
