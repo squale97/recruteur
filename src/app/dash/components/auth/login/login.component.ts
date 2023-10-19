@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit{
         private http:HttpClient
         ) { }
 
+        removeExtraSpaces() {
+          this.username = this.username.replace(/\s+/g, ' ').trim();
+        }
+        
+        
+
     ngOnInit(): void {
        
      
