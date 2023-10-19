@@ -18,6 +18,7 @@ import { AuthGuard } from './auth.guard';
                 ]
             },
             { path: 'auth', loadChildren: () => import('./dash/components/auth/auth.module').then(m => m.AuthModule) },
+           // { path: 'resetPass', loadChildren: () => import('./dash/components/auth/resetPass/reset.module').then(m => m.ResetModule) },
            
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },

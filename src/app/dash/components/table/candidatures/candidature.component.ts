@@ -43,14 +43,14 @@ export class CandidatureComponent implements OnInit {
     
     getCandidatures() {
   
-        console.log(sessionStorage.getItem("id"))
+        
         var appUrl = environment.baseUrl+'candidatureByEmploi'
         var identifiantRecruteur = sessionStorage.getItem('id');
         this.route.queryParams
         .subscribe(params => {
-          console.log(params); 
+       
           this.id = params["offre"];
-          console.log(this.id);
+        
        
         
       }
@@ -65,17 +65,13 @@ export class CandidatureComponent implements OnInit {
         const resp = this.http.post<any>(appUrl, body , httpOptions);
         resp.subscribe(
           (response) => {
-            // Succès de la connexion
-            console.log(response);
-            //   if (response.status == 200){
-            console.log("connected")
+            
       
             if (response == null) {
              // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
             } else {
-             // this.nbreTotal = response.taille;
-             // this.offres = response.contenu
-              console.log(response);
+            
+            
               this.candidatures = response.contenu
               
           

@@ -117,7 +117,7 @@ convertToPdf(page:HTMLElement) {
    getUserCv() {
     this.route.queryParams
     .subscribe(params => {
-      console.log(params); 
+     
       this.candidatCvId = params["candidat"];
     
     
@@ -144,15 +144,7 @@ convertToPdf(page:HTMLElement) {
       (response:any) => {
         
         
-        console.log(response);
-       // const link = document.createElement('a');
-       // html2canvas(response).then((canvas) => {
-         // const imgData = canvas.toDataURL('image/png');
-         // const pdf = new jsPDF('p', 'mm', 'a4');
-         // pdf.addImage(imgData, 'PNG', 0, 0, 210, 297); // A4 dimensions
-          //pdf.save('contenu.pdf');
-        //});
-       // this.data = response;
+       
        var a = document.createElement('a')
        
      var test =   window.open('CV', 'cv');
@@ -198,7 +190,7 @@ convertToPdf(page:HTMLElement) {
     getUserCvOnly() {
       this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
+       
         this.candidatCvId = params["candidat"];
       
       
@@ -225,7 +217,7 @@ convertToPdf(page:HTMLElement) {
         (response:any) => {
           
           
-          console.log(response);
+        
          // const link = document.createElement('a');
          // html2canvas(response).then((canvas) => {
            // const imgData = canvas.toDataURL('image/png');
@@ -278,14 +270,14 @@ convertToPdf(page:HTMLElement) {
 
     getCandidature() {
   
-      console.log(sessionStorage.getItem("id"))
+      
       var appUrl = environment.baseUrl+'candidatureById'
       var identifiantRecruteur = sessionStorage.getItem('id');
       this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
+       
         this.id = params["candidature"];
-        console.log(this.id);
+       
      
       
     }
@@ -300,17 +292,12 @@ convertToPdf(page:HTMLElement) {
       const resp = this.http.post<any>(appUrl, body , httpOptions);
       resp.subscribe(
         (response) => {
-          // Succès de la connexion
-          console.log(response);
-          //   if (response.status == 200){
-          console.log("connected")
-    
+          
           if (response == null) {
            // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
           } else {
-           // this.nbreTotal = response.taille;
-           // this.offres = response.contenu
-            console.log(response);
+          
+           
             this.motivation = response.contenu[0].motivation
            
             
@@ -330,14 +317,14 @@ convertToPdf(page:HTMLElement) {
     
     getCandidat() {
   
-        console.log(sessionStorage.getItem("id"))
+       
         var appUrl = environment.baseUrl+'userById'
         var identifiantRecruteur = sessionStorage.getItem('id');
         this.route.queryParams
         .subscribe(params => {
-          console.log(params); 
+         
           this.id = params["candidat"];
-          console.log(this.id);
+        
           this.selectedType = params['statut']
           if (this.selectedType.includes("En cours")) {
             this.dropdownItems = ["En cours","Retenir", "Rejeter"]
@@ -354,21 +341,17 @@ convertToPdf(page:HTMLElement) {
           })
         };
         const body = JSON.stringify({id:this.id});
-        console.log(body)
+       
         const resp = this.http.post<any>(appUrl, body , httpOptions);
         resp.subscribe(
           (response) => {
-            // Succès de la connexion
-            console.log(response);
-            //   if (response.status == 200){
-            console.log("connected")
-      
+            
             if (response == null) {
              // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
             } else {
              // this.nbreTotal = response.taille;
              // this.offres = response.contenu
-              console.log(response);
+            
               this.nom = response.contenu[0].nom
               this.prenom = response.contenu[0].prenom
               this.email = response.contenu[0].email
@@ -393,7 +376,7 @@ convertToPdf(page:HTMLElement) {
       validCandidat() {
         this.route.queryParams
         .subscribe(params => {
-          console.log(params); 
+          
           this.candidatureId = params["candidature"];
         
        
@@ -412,17 +395,14 @@ convertToPdf(page:HTMLElement) {
             'Authorization': 'Basic ' + btoa(environment.userAuth + ':' + environment.passAuth)
           })
         };
-      console.log(body)
+      
         const resp = this.http.post<any>(appUrl, body , httpOptions);
         resp.subscribe(
           (response) => {
-            // Succès de la connexion
-            console.log(response);
-            //   if (response.status == 200){
-            console.log("connected")
+           
       
             if (response == null) {
-             // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
+           
             } else {
             
               
@@ -444,34 +424,7 @@ convertToPdf(page:HTMLElement) {
       this.dropdownItems= ["En cours", "Retenue", "Rejeter"];
         this.getCandidat();
         this.getCandidature();
-       /* this.customerService.getCustomersLarge().then((customers) => {
-            this.customers = customers;
-            this.loading = false;
-
-            this.customers.forEach((customer) => (customer.date = new Date(<Date>customer.date)));
-        });
-*/
-        /*this.representatives = [
-            { name: 'Amy Elsner', image: 'amyelsner.png' },
-            { name: 'Anna Fali', image: 'annafali.png' },
-            { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-            { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-            { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-            { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-            { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-            { name: 'Onyama Limba', image: 'onyamalimba.png' },
-            { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-            { name: 'Xuxue Feng', image: 'xuxuefeng.png' }
-        ];
-*/
-        /*this.statuses = [
-            { label: 'Unqualified', value: 'unqualified' },
-            { label: 'Qualified', value: 'qualified' },
-            { label: 'New', value: 'new' },
-            { label: 'Negotiation', value: 'negotiation' },
-            { label: 'Renewal', value: 'renewal' },
-            { label: 'Proposal', value: 'proposal' }
-        ];*/
+     
     }
 
     clear(table: Table) {

@@ -57,12 +57,12 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 <p-sortIcon field="structure"></p-sortIcon>
             </div>
         </th>
-        <th style="min-width:10rem">
+        <!--<th style="min-width:10rem">
             <div class="flex align-items-center">
                Description
                 <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter>
             </div>
-        </th>
+        </th>-->
         <th pSortableColumn="validite" style="min-width:10rem">
             <div class="flex align-items-center">
                 Validite
@@ -131,9 +131,14 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         <td>
           {{offre.type}}
         </td>
-        <td>
-            {{offre.description}}
-        </td>
+        <!--<td>
+            <a  (click)="showDialog()"> <i 
+                style="color: blue; " class="pi pi-eye"></i>  </a>
+            <p-dialog header="Description" [(visible)]="visible" [style]="{ width: '50vw', height: '300px' }">
+                {{offre.description}}
+              </p-dialog>
+              {{offre.description}}
+        </td>-->
         <td>
             {{offre.validite}}
         </td>

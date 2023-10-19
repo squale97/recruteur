@@ -1,7 +1,7 @@
 {
-    "name": "Payment-Monitor",
+    "name": "Eprofile",
     "version": "16.0.0",
-    "license": "DGI",
+    "license": "Coding Again",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",

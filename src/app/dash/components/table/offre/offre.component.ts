@@ -11,25 +11,23 @@ import { Offre } from 'src/app/dash/api/offre';
 import { Router } from '@angular/router';
 
 
+
 interface expandedRows {
     [key: string]: boolean;
 }
 
 @Component({
-    templateUrl: './tvm.component.html',
+    templateUrl: './offre.component.html',
     providers: [MessageService, ConfirmationService]
 })
-export class TvmComponent implements OnInit {
+export class OffreComponent implements OnInit {
 
     
 
     offres!: Offre[];
 
-    //customers!: Customer[];
-
-  //  representatives!: Representative[];
-
-   // statuses!: any[];
+    
+   visible: boolean = false;
 
     loading: boolean = true;
 
@@ -65,7 +63,7 @@ export class TvmComponent implements OnInit {
     }
      suppressOffre(id:string) {
    
-      console.log(id)
+     
       var appUrl = environment.baseUrl+'delete/emploi'
       var identifiantRecruteur = sessionStorage.getItem('id');
       const httpOptions = {
@@ -79,9 +77,9 @@ export class TvmComponent implements OnInit {
       resp.subscribe(
         (response) => {
           // Succès de la connexion
-          console.log(response);
+        
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Offre supprimé' });
-           console.log("ok")
+           
           //   if (response.status == 200){
             window.location.reload()
     
@@ -98,21 +96,26 @@ export class TvmComponent implements OnInit {
         (error) => {
     
           // Afficher l'erreur en cas de problème
-          console.log(error.status);
+          //console.log(error.status);
           console.error('Échec de la connexion :', error.status);
         }
       );
    
      }
 
+     showDialog() {
+      this.visible = true;
+  }
+
     goToEdit(){
       this.router.navigate["/editOffre"]
     }
     getOffres() {
   
-        console.log(sessionStorage.getItem("id"))
+       
         var appUrl = environment.baseUrl+'emploiByRecruteur'
         var identifiantRecruteur = sessionStorage.getItem('id');
+      
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type':  'application/json',
@@ -123,17 +126,14 @@ export class TvmComponent implements OnInit {
         const resp = this.http.post<any>(appUrl, body , httpOptions);
         resp.subscribe(
           (response) => {
-            // Succès de la connexion
-            console.log(response);
-            //   if (response.status == 200){
-            console.log("connected")
+          
       
             if (response == null) {
              // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
             } else {
              // this.nbreTotal = response.taille;
               this.offres = response.contenu
-              console.log(this.offres);
+            
                //document.getElementBconyId("trash").onclick=this.suppressOffre(response.)
           
             }
@@ -141,7 +141,7 @@ export class TvmComponent implements OnInit {
           (error) => {
       
             // Afficher l'erreur en cas de problème
-            console.log(error.status);
+           // console.log(error.status);
             console.error('Échec de la connexion :', error.status);
           }
         );
@@ -187,7 +187,7 @@ export class TvmComponent implements OnInit {
           header: 'Suppression',
           icon: 'pi pi-info-circle',
           accept: () => {
-            console.log(id)
+           
             var appUrl = environment.baseUrl+'delete/emploi'
             var identifiantRecruteur = sessionStorage.getItem('id');
             const httpOptions = {
@@ -201,9 +201,9 @@ export class TvmComponent implements OnInit {
             resp.subscribe(
               (response) => {
                 // Succès de la connexion
-                console.log(response);
+             
                 this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Offre supprimée' });
-                 console.log("ok")
+                
                 //   if (response.status == 200){
                   window.location.reload()
           
@@ -220,15 +220,15 @@ export class TvmComponent implements OnInit {
               (error) => {
           
                 // Afficher l'erreur en cas de problème
-                console.log(error.status);
-                console.error('Échec de la connexion :', error.status);
+              
+                //console.error('Échec de la connexion :', error.status);
               }
             );
               
               //this.messageService.add({ severity: 'info', summary: 'Supprimée', detail: 'Offre supprimée' });
           },
           reject: ()=> {
-            console.log("refuser");
+          //  console.log("refuser");
           }
       });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Product } from '../../api/product';
 import { Offre } from '../../api/offre';
@@ -65,21 +65,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
     nbreCandidat:number;
     id:string;
     offres:Offre[];
+    nbreCandidatures:number=0;
+    nbreConsultations:number=0;
+    stats:number[]=[];
+    offreValid:number=0;
+    offreInvalid:number=0;
 
 
-
-
+    //@Inject
     constructor(
+       
         
         private http:HttpClient,
 
         private productService: ProductService, public layoutService: LayoutService) {
-    
+  
+    }
+
+
+    getStats() {
+        
     }
 
 getOffres() {
-  
-  console.log(sessionStorage.getItem("id"))
+    
+
   var appUrl = environment.baseUrl+'emploiByRecruteur'
   var identifiantRecruteur = sessionStorage.getItem('id');
   const httpOptions = {
@@ -92,25 +102,28 @@ getOffres() {
   const resp = this.http.post<any>(appUrl, body , httpOptions);
   resp.subscribe(
     (response) => {
-      // Succès de la connexion
-      console.log(response);
-      //   if (response.status == 200){
-      console.log("connected")
+   
 
       if (response == null) {
        // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
       } else {
         this.nbreTotal = response.taille;
         this.offres = response.contenu
-        console.log(this.offres);
-        
-    
+       
+        for (let i = 0; i <this.nbreTotal ;i++) {
+            //this.nbreCandidatures =+ response.contenu[i].nbCandidature
+            //this.nbreConsultations =+ response.contenu[i].nbConsultation
+        }
+      
       }
+      //this.stats.push(this.nbreTotal, this.nbreCandidatures, this.nbreConsultations)
+    
+   
     },
     (error) => {
 
       // Afficher l'erreur en cas de problème
-      console.log(error.status);
+     // console.log(error.status);
       console.error('Échec de la connexion :', error.status);
     }
   );
@@ -133,14 +146,95 @@ getOffres() {
 
 initChart() {
   
-
-   
-        //console.log(this.selectedTime)
-   
-
+    var appUrl = environment.baseUrl+'emploiByRecruteur'
+    var identifiantRecruteur = sessionStorage.getItem('id');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(environment.userAuth + ':' + environment.passAuth)
+      })
+    };
+    const body = JSON.stringify({recruteur:identifiantRecruteur});
+    const resp = this.http.post<any>(appUrl, body , httpOptions);
+    resp.subscribe(
+      (response) => {
+        // Succès de la connexion
+      
+  
+        if (response == null) {
+         // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
+        } else {
+          this.nbreTotal = response.taille;
+          this.offres = response.contenu
        
+          for (let i = 0; i <this.nbreTotal ;i++) {
+              this.nbreCandidatures = this.nbreCandidatures+ response.contenu[i].nbCandidature
+              this.nbreConsultations = this.nbreConsultations+ response.contenu[i].nbConsultation
+            
+            }
+
+            //console.log(this.nbreCandidatures)
+        
+        for (let i = 0; i <this.nbreTotal ;i++) {
+            if (response.contenu[i].validite == "invalide") {
+                this.offreInvalid = this.offreInvalid+1
+
+            }
+            if (response.contenu[i].validite == "valide") {
+                this.offreValid = this.offreValid+1
+
+            }
+             
+        }
+      
+        }
+        this.stats.push(this.nbreTotal, this.nbreCandidatures, this.nbreConsultations)
+      
       
 
+        const documentStyle = getComputedStyle(document.documentElement);
+        const textColor = documentStyle.getPropertyValue('--text-color');
+        
+        this.chartData = {
+            labels: ['Offres', 'Candidatures', 'Consultations'],
+            datasets: [
+                {
+                    data: [this.nbreTotal,this.nbreCandidatures,this.nbreConsultations],//this.stats,//[300, 50, 100],
+                    backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
+                    hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
+                }
+            ]
+        };
+
+
+        this.chartOptions = {
+            cutout: '60%',
+            plugins: {
+                legend: {
+                    labels: {
+                        color: textColor
+                    }
+                }
+            }
+        };
+      
+      },
+      (error) => {
+  
+        // Afficher l'erreur en cas de problème
+        console.log(error.status);
+        console.error('Échec de la connexion :', error.status);
+      }
+    );
+  }
+  
+  
+  
+   
+        
+      
+
+/*
           
           const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
@@ -209,8 +303,8 @@ initChart() {
     };
         
 
-    
-}
+    */
+
 
 
 
@@ -221,10 +315,10 @@ initChart() {
 
     ngOnInit() {
     
-      console.log(sessionStorage.getItem('id'))
+      
       this.getOffres();
   
-      
+      //setTimeout(this.initChart, 7000)
      this.initChart()
        
         

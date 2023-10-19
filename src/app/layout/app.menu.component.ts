@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Paiements',
                 items: [
-                    { label: 'Mes offres', icon: 'pi pi-file', routerLink: ['/table/tvm'] },
+                    { label: 'Mes offres', icon: 'pi pi-file', routerLink: ['/table/offre'] },
                  //   { label: 'Paiement TR', icon: 'pi pi-fw pi-id-card', routerLink: ['/table/tr'] },
                     //{ label: 'Paiement Ecme', icon: 'pi pi-fw pi-id-card', routerLink: ['/table/ecme'] },
                    

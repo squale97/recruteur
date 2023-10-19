@@ -40,9 +40,9 @@ export class EditOffreComponent implements OnInit{
       var identifiantRecruteur = sessionStorage.getItem('id');
       this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
+      
         this.id = params["id"];
-        console.log(this.id);
+      
       this.dropdownItems = ["CDD", "STAGE", "CDI", "AUTRE"];
       
     }
@@ -57,16 +57,13 @@ export class EditOffreComponent implements OnInit{
       const resp = this.http.post<any>(appUrl, body , httpOptions);
       resp.subscribe(
         (response) => {
-          // Succès de la connexion
-          console.log(response);
-          //   if (response.status == 200){
-          console.log("connected")
+         
    
           if (response == null) {
            // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
           } else {
 
-            console.log(response);
+           
             this.nom = response.contenu[0].nom;
             this.lieu = response.contenu[0].lieu;
             this.structure = response.contenu[0].structure;
@@ -94,9 +91,9 @@ export class EditOffreComponent implements OnInit{
 
       this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
+       
         this.id = params["id"];
-        console.log(this.id);
+        
      
       
     }
@@ -114,7 +111,7 @@ export class EditOffreComponent implements OnInit{
         
       })
 
-     console.log(body)
+    
       var appUrl = environment.baseUrl+'update/emploi'
       const httpOptions = {
         headers: new HttpHeaders({
@@ -127,14 +124,11 @@ export class EditOffreComponent implements OnInit{
       resp.subscribe(
         (response) => {
           // Succès de la connexion
-          console.log(response);
-          //   if (response.status == 200){
-          console.log("connected")
-           this.router.navigateByUrl("/table/tvm")
+       
+           this.router.navigateByUrl("/table/offre")
           if (response == null) {
            // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
           } else {
-            console.log(response);
            
           }
         },

@@ -48,20 +48,20 @@ logAccount() {
       };
       const body = JSON.stringify({email:this.username,password:this.password});
 
-      console.log(this.username)
+      //console.log(this.username)
      var resp =  this.http.post<any>(environment.baseUrl+"loginUser", body, httpOptions);
   
 
    resp.subscribe(
     (response) => {
       // Succès de la connexion
-      console.log(response);
+      //console.log(response);
       //   if (response.status == 200){
-      console.log("connected")
+      //console.log("connected")
       if (response == null) {
         // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
        } else {
-        console.log(response);
+        //console.log(response);
         if (response.recruteur == "oui") {
        // sessionStorage.setItem("access_token", response.content.key)
         //sessionStorage.setItem("username",response.content.account.email)
@@ -71,7 +71,7 @@ logAccount() {
          localStorage.setItem('mail',response.username)
          sessionStorage.setItem("id", response.id)
          sessionStorage.setItem("abonnement", response.abonnement)
-         console.log(response.abonnement)
+         //console.log(response.abonnement)
          if (response.abonnement == "valide") {
           this.router.navigateByUrl("/")
          }else {
@@ -89,7 +89,7 @@ logAccount() {
      (error) => {
 
       
-       console.log(error.status);
+      // console.log(error.status);
        console.error('Échec de la connexion :', error.status);
      }
    

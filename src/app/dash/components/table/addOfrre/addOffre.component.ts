@@ -52,7 +52,7 @@ export class AddOffreComponent implements OnInit{
 
     addOffre() {
   
-      console.log(sessionStorage.getItem("id"))
+     
       var appUrl = environment.baseUrl+'addEmploi'
       var identifiantRecruteur = sessionStorage.getItem('id');
      
@@ -76,14 +76,11 @@ export class AddOffreComponent implements OnInit{
       resp.subscribe(
         (response) => {
           // Succès de la connexion
-          console.log(response);
-          //   if (response.status == 200){
-          console.log("connected")
-          console.log(response);
+      
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Offre ajoutée' });
         
         
-          this.router.navigateByUrl("/table/tvm");
+          this.router.navigateByUrl("/table/offre");
           if (response == null) {
            // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });
           } else {
@@ -100,7 +97,7 @@ export class AddOffreComponent implements OnInit{
         (error) => {
     
           // Afficher l'erreur en cas de problème
-          console.log(error.status);
+         
           console.error('Échec de la connexion :', error.status);
         }
       );
@@ -126,8 +123,9 @@ export class AddOffreComponent implements OnInit{
 
     ngOnInit(): void {
      // this.verifierFormulaire() ;
-     console.log(this.lieu)
+    
      //this.formulaireComplet = false;
+    //console.log(sessionStorage.getItem('id'));
       this.dropdownItems= ["CDD", "STAGE", "CDI", "AUTRE"];
     
     }
