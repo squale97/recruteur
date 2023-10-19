@@ -15,6 +15,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { DialogModule } from 'primeng/dialog';
         ToggleButtonModule,
         InputTextModule,
         ConfirmDialogModule,
-        DialogModule
+        DialogModule,
+        PasswordModule
     ],
     declarations: [UpdateComponent]
 })
