@@ -24,6 +24,7 @@ export class EditOffreComponent implements OnInit{
    validite:any;
    date:string;
    validiteTest:string;
+   loading:boolean=false;
    
 
     constructor(private route:ActivatedRoute,private http:HttpClient, private router:Router){
@@ -88,7 +89,7 @@ export class EditOffreComponent implements OnInit{
     }
   
      updateEmploi () {
-
+      this.loading=true
       this.route.queryParams
       .subscribe(params => {
        
@@ -124,7 +125,7 @@ export class EditOffreComponent implements OnInit{
       resp.subscribe(
         (response) => {
           // Succès de la connexion
-       
+            this.loading=false
            this.router.navigateByUrl("/table/offre")
           if (response == null) {
            // this.messageService.add({ severity: 'error', summary: 'Echec', detail: 'Aucun résultat' });

@@ -52,8 +52,9 @@
                         <textarea [(ngModel)]="description"  rows="4" cols="12" pInputText id="email2" type="text"></textarea> 
                     </div>
                     <div class="field col">
-                    <button (click)="updateEmploi()"  pButton pRipple label="Valider" ></button>
+                    <button [disabled]="loading" (click)="updateEmploi()"  pButton pRipple label="Valider" ></button>
                 </div>
+                <p-progressSpinner *ngIf="loading" id="spinE" ></p-progressSpinner>
                 </div>
                
              

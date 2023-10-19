@@ -12,6 +12,8 @@ import { EditOffreRoutingModule } from './editOffre-routing.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 
 @NgModule({
     imports: [
@@ -26,7 +28,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         EditOffreRoutingModule,
         DropdownModule,
         InputTextModule,
-        InputTextareaModule
+        InputTextareaModule,
+        ProgressSpinnerModule 
     ],
     declarations: [EditOffreComponent]
 })

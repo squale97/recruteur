@@ -24,7 +24,7 @@ export class AddOffreComponent implements OnInit{
    description:string;
    nbreAnnee:string;
    formulaireComplet:boolean;
-  
+   loading:boolean=false;
 
    
     constructor(private http:HttpClient, private messageService: MessageService, private router:Router){
@@ -52,7 +52,7 @@ export class AddOffreComponent implements OnInit{
 
     addOffre() {
   
-     
+      this.loading = true
       var appUrl = environment.baseUrl+'addEmploi'
       var identifiantRecruteur = sessionStorage.getItem('id');
      
@@ -76,7 +76,7 @@ export class AddOffreComponent implements OnInit{
       resp.subscribe(
         (response) => {
           // Succès de la connexion
-      
+          this.loading=false
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Offre ajoutée' });
         
         

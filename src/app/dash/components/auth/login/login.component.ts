@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit{
 
     password!: string;
     username!:string;
-    
+    loading:boolean=false
 
     constructor(public layoutService: LayoutService,
        private messageService: MessageService ,
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit{
      
     }
 logAccount() {
+  this.loading=true;
     const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json',
@@ -60,6 +61,7 @@ logAccount() {
 
    resp.subscribe(
     (response) => {
+      this.loading=false
       // Succès de la connexion
       //console.log(response);
       //   if (response.status == 200){
@@ -94,7 +96,7 @@ logAccount() {
      },
      (error) => {
 
-      
+      this.loading=false
       // console.log(error.status);
        console.error('Échec de la connexion :', error.status);
      }
