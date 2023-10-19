@@ -43,7 +43,7 @@ export class DetailCandidatComponent implements OnInit {
     data:any;
     pdfOptions:any
 
-    constructor(private route:ActivatedRoute, private router:Router,private customerService: CustomerService, private http:HttpClient,) {}
+    constructor(private route:ActivatedRoute, private router:Router,private customerService: CustomerService, private http:HttpClient, private messageService:MessageService) {}
 
 
     /*convertToPDF(element) {
@@ -399,6 +399,8 @@ convertToPdf(page:HTMLElement) {
         const resp = this.http.post<any>(appUrl, body , httpOptions);
         resp.subscribe(
           (response) => {
+           
+  this.messageService.add({ severity: 'success', summary: 'Succès', detail: 'Statut mis à jour' });
            
       
             if (response == null) {
