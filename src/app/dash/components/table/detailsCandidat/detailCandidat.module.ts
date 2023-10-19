@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { DialogModule } from 'primeng/dialog';
         ToastModule,
         ToggleButtonModule,
         InputTextModule,
-        DialogModule
+        DialogModule,
+        ProgressSpinnerModule
     ],
     declarations: [DetailCandidatComponent]
 })

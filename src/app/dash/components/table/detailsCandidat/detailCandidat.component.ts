@@ -42,6 +42,7 @@ export class DetailCandidatComponent implements OnInit {
     visible: boolean = false;
     data:any;
     pdfOptions:any
+    loading:boolean=false;
 
     constructor(private route:ActivatedRoute, private router:Router,private customerService: CustomerService, private http:HttpClient, private messageService:MessageService) {}
 
@@ -260,7 +261,7 @@ convertToPdf(page:HTMLElement) {
 
    // statuses!: any[];
 
-    loading: boolean = true;
+    
 
     activityValues: number[] = [0, 100];
 
@@ -374,6 +375,7 @@ convertToPdf(page:HTMLElement) {
 
 
       validCandidat() {
+        this.loading = true
         this.route.queryParams
         .subscribe(params => {
           
@@ -399,6 +401,7 @@ convertToPdf(page:HTMLElement) {
         const resp = this.http.post<any>(appUrl, body , httpOptions);
         resp.subscribe(
           (response) => {
+            this.loading=false;
            
   this.messageService.add({ severity: 'success', summary: 'Succès', detail: 'Statut mis à jour' });
            

@@ -24,7 +24,9 @@
                     <a [routerLink]="['/auth/resetPass']" class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
                     </div>
                     <p-toast></p-toast>
-                    <button (click)="logAccount()" pButton pRipple label="Connexion" class="w-full p-3 text-xl" ></button>
+                    <button [disabled]="loading" (click)="logAccount()" pButton pRipple label="Connexion" class="w-full p-3 text-xl" ></button>
+
+                    <p-progressSpinner *ngIf="loading" id="spinf" ></p-progressSpinner>
                 </div>
             </div>
         </div>

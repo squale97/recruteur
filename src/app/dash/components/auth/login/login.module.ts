@@ -8,9 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     imports: [
+        ProgressSpinnerModule, 
         CommonModule,
         LoginRoutingModule,
         ButtonModule,
@@ -18,7 +20,8 @@ import { ToastModule } from 'primeng/toast';
         InputTextModule,
         FormsModule,
         PasswordModule,
-        ToastModule
+        ToastModule,
+      
     ],
     declarations: [LoginComponent]
 })

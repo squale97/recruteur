@@ -13,6 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { ToastModule } from 'primeng/toast';
         DropdownModule,
         InputTextModule,
         InputTextareaModule,
-        ToastModule
+        ToastModule,
+        ProgressSpinnerModule
     ],
     declarations: [AddOffreComponent]
 })
