@@ -328,9 +328,12 @@ convertToPdf(page:HTMLElement) {
         
           this.selectedType = params['statut']
           if (this.selectedType.includes("En cours")) {
-            this.dropdownItems = ["En cours","Retenir", "Rejeter"]
+            this.dropdownItems = ["En cours","Retenir", "Non retenu"]
           }else if (this.selectedType.includes("Retenue")){
-            this.dropdownItems = ["Retenue","En cours", "Rejeter"]
+            this.dropdownItems = ["Retenue","En cours", "Non retenue"]
+          }
+          else if (this.selectedType.includes("Non retenue")){
+            this.dropdownItems = ["Non retenue","En cours", "Retenue"]
           }
         
       }
@@ -426,7 +429,7 @@ convertToPdf(page:HTMLElement) {
       }
 
     ngOnInit() {
-      this.dropdownItems= ["En cours", "Retenue", "Rejeter"];
+      this.dropdownItems= ["En cours", "Retenue", "Non retenue"];
         this.getCandidat();
         this.getCandidature();
      
